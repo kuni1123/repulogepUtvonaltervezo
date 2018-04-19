@@ -10,6 +10,9 @@ namespace repulo
 {
     class Metodusok
     {
+        bool siker = false;
+        public string honnanEredeti = "";
+        public string hovaEredeti = "";
         public struct ut
         {
            public string honnan;
@@ -44,22 +47,45 @@ namespace repulo
                 cnn.Close();
             }
         }
-        public void kereses(string honnan, string hova)
+        public bool kereses(string honnan, string hova)
         {
-            for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+            
+            bool megvan = false;
+
+            for (int i = 0; i <ds.Tables[1].Rows.Count; i++)
             {
-                if(honnan == ds.Tables[1].Rows[i][1].ToString() && hova == ds.Tables[1].Rows[i][2].ToString())
+                if(honnan == ds.Tables[1].Rows[i][1].ToString())
                 {
-                    ut utvonal = new ut();
-                    utvonal.honnan = ds.Tables[1].Rows[i][1].ToString();
-                    utvonal.hova = ds.Tables[1].Rows[i][2].ToString();
-                    utvonal.km = ds.Tables[1].Rows[i][3].ToString();
-                    utvonal.ido = ds.Tables[1].Rows[i][4].ToString();
-                    utvonal.tarsasag = ds.Tables[1].Rows[i][5].ToString();
-                    atszallas.Add(utvonal);
-                    //Console.WriteLine(utvonal.honnan+";"+utvonal.hova+";"+utvonal.km+";"+utvonal.ido+";"+utvonal.tarsasag);
+                    if(hova == ds.Tables[1].Rows[i][2].ToString())
+                    {
+                        hozzaad(i);
+                        megvan = true;
+                    }
+                    else
+                    {
+                        megvan = kereses(ds.Tables[1].Rows[i][2].ToString(), hova);
+                        if (megvan)
+                        {
+                            hozzaad(i);
+                        }
+                    }
+                    
                 }
             }
+            return megvan;
         }
+        public void hozzaad(int i)
+        {
+            ut utvonal = new ut();
+            int ora = Convert.ToInt16(ds.Tables[1].Rows[i][4]) / 60;
+            int perc = Convert.ToInt16(ds.Tables[1].Rows[i][4]) % 60;
+            utvonal.honnan = ds.Tables[1].Rows[i][1].ToString();
+            utvonal.hova = ds.Tables[1].Rows[i][2].ToString();
+            utvonal.km = ds.Tables[1].Rows[i][3].ToString();
+            utvonal.ido = ""+ora+"óra "+perc+" perc  "+ ds.Tables[1].Rows[i][4].ToString();
+            utvonal.tarsasag = ds.Tables[1].Rows[i][5].ToString();
+            atszallas.Insert(0,utvonal);
+        }
+        
     }
 }

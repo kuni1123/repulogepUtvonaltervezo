@@ -19,21 +19,21 @@ namespace repulo
             met.lekerdezes(lekerdezes);
             lekerdezes = "SELECT * FROM jaratok;";
             met.lekerdezes(lekerdezes);
-            for (int i = 0; i < met.ds.Tables[0].Rows.Count; i++)
-            {
-                Console.Write(met.ds.Tables[0].Rows[i][0]);
-                Console.WriteLine(met.ds.Tables[0].Rows[i][1]);
-            }
-            for (int i = 0; i < met.ds.Tables[1].Rows.Count; i++)
-            {
-                Console.Write(met.ds.Tables[1].Rows[i][0] + ";");
-                Console.Write(met.ds.Tables[1].Rows[i][1] + ";");
-                Console.Write(met.ds.Tables[1].Rows[i][2] + ";");
-                Console.Write(met.ds.Tables[1].Rows[i][3] + ";");
-                Console.Write(met.ds.Tables[1].Rows[i][4] + ";");
-                Console.WriteLine(met.ds.Tables[1].Rows[i][5]);
-            }
-            Console.WriteLine("Járatok és városok beolvasása Kész!");
+            //for (int i = 0; i < met.ds.Tables[0].Rows.Count; i++)
+            //{
+            //    Console.Write(met.ds.Tables[0].Rows[i][0]);
+            //    Console.WriteLine(met.ds.Tables[0].Rows[i][1]);
+            //}
+            //for (int i = 0; i < met.ds.Tables[1].Rows.Count; i++)
+            //{
+            //    Console.Write(met.ds.Tables[1].Rows[i][0] + ";");
+            //    Console.Write(met.ds.Tables[1].Rows[i][1] + ";");
+            //    Console.Write(met.ds.Tables[1].Rows[i][2] + ";");
+            //    Console.Write(met.ds.Tables[1].Rows[i][3] + ";");
+            //    Console.Write(met.ds.Tables[1].Rows[i][4] + ";");
+            //    Console.WriteLine(met.ds.Tables[1].Rows[i][5]);
+            //}
+            //Console.WriteLine("Járatok és városok beolvasása Kész!");
             Console.WriteLine("Kérlek add meg, hogy honnan szeretnél indulni:");
             bool honnanVan = false;
             string honnan = "";
@@ -71,6 +71,8 @@ namespace repulo
                     Console.WriteLine("Nem indul "+honnan+"->" + hova+" járat!");
                 }
             }
+            met.honnanEredeti = honnan;
+            met.hovaEredeti = hova;
             met.kereses(honnan, hova);
             Console.WriteLine("A legrövidebb útvonal:");
             for (int i = 0; i < met.atszallas.Count; i++)
