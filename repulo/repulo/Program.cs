@@ -14,74 +14,56 @@ namespace repulo
         static void Main(string[] args)
         {
             Metodusok met = new Metodusok();
+            Valasztas valasztas = new Valasztas();
+
+            int valasztasSzam = 0;
+            bool kilep = false;
 
             string lekerdezes = "SELECT * FROM varos;";
-            met.lekerdezes(lekerdezes);
+            met.Lekerdezes(lekerdezes);
             lekerdezes = "SELECT * FROM jaratok;";
-            met.lekerdezes(lekerdezes);
-            //for (int i = 0; i < met.ds.Tables[0].Rows.Count; i++)
-            //{
-            //    Console.Write(met.ds.Tables[0].Rows[i][0]);
-            //    Console.WriteLine(met.ds.Tables[0].Rows[i][1]);
-            //}
-            //for (int i = 0; i < met.ds.Tables[1].Rows.Count; i++)
-            //{
-            //    Console.Write(met.ds.Tables[1].Rows[i][0] + ";");
-            //    Console.Write(met.ds.Tables[1].Rows[i][1] + ";");
-            //    Console.Write(met.ds.Tables[1].Rows[i][2] + ";");
-            //    Console.Write(met.ds.Tables[1].Rows[i][3] + ";");
-            //    Console.Write(met.ds.Tables[1].Rows[i][4] + ";");
-            //    Console.WriteLine(met.ds.Tables[1].Rows[i][5]);
-            //}
-            //Console.WriteLine("Járatok és városok beolvasása Kész!");
-            Console.WriteLine("Kérlek add meg, hogy honnan szeretnél indulni:");
-            bool honnanVan = false;
-            string honnan = "";
-            string hova = "";
-            while (!honnanVan)
-            {
-                honnan = Console.ReadLine();
-                for (int i = 0; i < met.ds.Tables[1].Rows.Count; i++)
-                {
-                    if (met.ds.Tables[1].Rows[i][1].ToString() == honnan)
-                    {
-                        honnanVan = true;
-                    }
-                }
-                if (!honnanVan)
-                {
-                    Console.WriteLine("Innen nem indulnak járatok: "+honnan);
-                }
-            }
+            met.Lekerdezes(lekerdezes);
 
-            Console.WriteLine("És most add meg, hogy hova szeretnél utazni:");
-            bool hovaVan = false;
-            while (!hovaVan)
+            Console.WriteLine("Mit szeretne?");
+            Console.WriteLine("1. Légitársaságok járatai");
+            Console.WriteLine("2. Légi társaságok listája");
+            Console.WriteLine("3. Útvonal tervezés");
+            Console.WriteLine("4. Legkissebb városból legnagyobb városba");
+            
+            while (!kilep)
             {
-                hova = Console.ReadLine();
-                for (int i = 0; i < met.ds.Tables[1].Rows.Count; i++)
+                try
                 {
-                    if (met.ds.Tables[1].Rows[i][2].ToString() == hova)
-                    {
-                        hovaVan = true;
-                    }
+                    valasztasSzam = Convert.ToInt16(Console.ReadLine());
+                    kilep = true;
                 }
-                if (!hovaVan)
+                catch
                 {
-                    Console.WriteLine("Nem indul "+honnan+"->" + hova+" járat!");
+                    Console.WriteLine("Kérlek számot írj be!");
                 }
             }
-            met.honnanEredeti = honnan;
-            met.hovaEredeti = hova;
-            met.kereses(honnan, hova);
-            Console.WriteLine("A legrövidebb útvonal:");
-            for (int i = 0; i < met.atszallas.Count; i++)
+            switch (valasztasSzam)
             {
-                Metodusok.ut utvonal = new Metodusok.ut();
-                utvonal = met.atszallas[i];
-                Console.WriteLine("Felszállás: "+utvonal.honnan+" Leszállás: "+utvonal.hova+" Távolság: "+utvonal.km+" km Időtartam "+utvonal.ido+" Társaság: "+utvonal.tarsasag);
+                case 1:
+                    valasztas.LegitarsasagJaratai(ref met.ds);
+                    Console.ReadKey();
+                    break;
+                case 2:
+                    valasztas.LegitarsasagokListaja(ref met.ds);
+                    Console.ReadKey();
+                    break;
+                case 3:
+                    valasztas.Utvonaltervezes(ref met.ds);
+                    Console.ReadKey();
+                    break;
+                case 4:
+                    valasztas.Utvonal(ref met.ds);
+                    Console.ReadKey();
+                    break;
+                default:
+                    Console.WriteLine("Nincs ilyen menüpont!");
+                    break;
             }
-            Console.ReadKey();
         }
     }
 }

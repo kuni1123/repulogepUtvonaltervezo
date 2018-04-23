@@ -48,6 +48,7 @@
     <Compile Include="Metodusok.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Valasztas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

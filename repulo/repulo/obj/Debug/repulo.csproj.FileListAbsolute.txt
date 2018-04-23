@@ -8,3 +8,11 @@ D:\IntelliJ\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\MySql.Data.xml
 D:\IntelliJ\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.csproj.CopyComplete
 D:\IntelliJ\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.exe
 D:\IntelliJ\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.pdb
+E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.csprojResolveAssemblyReference.cache
+E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.csproj.CoreCompileInputs.cache
+E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.exe
+E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.pdb
+E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.exe.config
+E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.exe
+E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.pdb
+E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\MySql.Data.dll
