@@ -73,7 +73,21 @@ namespace repulo
             {
                 if (sor[6].ToString()==legitarsasag)
                 {
-                    Console.WriteLine("Felszállás: " + sor[1] + " Leszállás: " + sor[2] + " Távolság: " + sor[3] + " km Időtartam " + met.OraValto(sor[4].ToString(),sor[5].ToString()));
+                    int repulesiIdoOra = 0;
+                    int repulesiIdoPerc = 0;
+                    if (met.OraDarabolo(sor[5].ToString()) < met.OraDarabolo(sor[4].ToString()))
+                    {
+                        repulesiIdoOra = met.OraDarabolo(sor[5].ToString())+24 - met.OraDarabolo(sor[4].ToString());
+                        repulesiIdoPerc = met.PercDarabolo(sor[5].ToString()) - met.PercDarabolo(sor[4].ToString());
+                    }
+                    else
+                    {
+                        repulesiIdoOra = met.OraDarabolo(sor[5].ToString()) - met.OraDarabolo(sor[4].ToString());
+                        repulesiIdoPerc = met.PercDarabolo(sor[5].ToString()) - met.PercDarabolo(sor[4].ToString());
+                    }
+                    
+                    Console.WriteLine("\tFelszállás: " + sor[1] + " Leszállás: " + sor[2] + " Távolság: " + sor[3] + " km Indul: " + sor[4].ToString()+" Érkezik "+sor[5].ToString()+" Időtartama: "+repulesiIdoOra+" óra "+ repulesiIdoPerc+" perc");
+                    Console.WriteLine();
                 }
             }
             
@@ -90,7 +104,7 @@ namespace repulo
             bool van = false;
             while (!van)
             {
-                Console.WriteLine("Kérlek add meg, hogy honnan szeretnél indulni:");
+                Console.WriteLine("Kérlek add meg, hogy honnan szeretnél indulni(Ha nem szeretnél ez alapján szűrni akkor nyomj entert):");
                 honnan = Console.ReadLine();
                 foreach(DataRow dr in ds.Tables[0].Rows)
                 if (dr[0].ToString().Contains(honnan) || honnan == null)
@@ -105,7 +119,7 @@ namespace repulo
             van = false;
             while (!van)
             {
-                Console.WriteLine("Most az, hogy hova szeretnél utazni:");
+                Console.WriteLine("Most az, hogy hova szeretnél utazni(Ha nem szeretnél ez alapján szűrni akkor nyomj entert):");
                 hova = Console.ReadLine();
                 foreach (DataRow dr in ds.Tables[0].Rows)
                     if (dr[0].ToString().Contains(hova) || hova == null)
@@ -127,8 +141,7 @@ namespace repulo
                 }
                 if (met.atszallas.Count == 0)
                 {
-                    DataSet ds2 = ds;
-                    met.Kereses(ref ds2, honnan, hova, null);
+                    met.Kereses(ref ds, honnan, hova, null);
                 }
             }
             else

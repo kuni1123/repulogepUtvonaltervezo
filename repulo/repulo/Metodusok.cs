@@ -36,6 +36,7 @@ namespace repulo
             public int ido;
             public string elozo;
         }
+        List<int> sorszamok = new List<int>();
 
         #region változók
         public static string kapcsolat = "SERVER=kundavid1.ddns.net;DATABASE=repulo;UID=david;PASSWORD=mysql;";
@@ -195,9 +196,9 @@ namespace repulo
                         if (hova == ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][HOVA_INDEX].ToString() && OraDarabolo(erkezik) < OraDarabolo(ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][4].ToString()))
                         {
                             Hozzaad(i, ref ds2);
-                            Valasztas valaszt = new Valasztas();
                             erkezik = ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][5].ToString();
                             megvan = true;
+
                         }
                         else
                         {
@@ -221,7 +222,7 @@ namespace repulo
                     }
                 }
             }
-            else
+            if (honnan != null && hova == null)
             {
                 foreach (DataRow dr in ds2.Tables[JARATOK_TABLA_INDEX].Rows)
                 {
@@ -231,6 +232,7 @@ namespace repulo
                     }
                 }
             }
+
             return megvan;
         }
 
@@ -246,7 +248,6 @@ namespace repulo
 
             for (int i = 0; i < legitarsasagLista.Count; i++)
             {
-
                 for (int y = 0; y < atszallas.Count; y++)
                 {
                     if (legitarsasagLista[i] == atszallas[y].tarsasag)
@@ -300,7 +301,6 @@ namespace repulo
                 }
                 if (repulesiIdo != 0)
                 {
-
                     if (repulesiIdo < 0)
                     {
                         repulesiIdo = repulesiIdo * -1;

@@ -46,18 +46,22 @@ namespace repulo
             {
                 case 1:
                     valasztas.LegitarsasagJaratai(ref met.ds);
+                    Console.WriteLine("A program bezárásához nyomj meg egy gombot!");
                     Console.ReadKey();
                     break;
                 case 2:
                     valasztas.LegitarsasagokListaja(ref met.ds);
+                    Console.WriteLine("A program bezárásához nyomj meg egy gombot!");
                     Console.ReadKey();
                     break;
                 case 3:
                     valasztas.Utvonaltervezes(ref met.ds);
+                    Console.WriteLine("A program bezárásához nyomj meg egy gombot!");
                     Console.ReadKey();
                     break;
                 case 4:
                     valasztas.Utvonal(ref met.ds);
+                    Console.WriteLine("A program bezárásához nyomj meg egy gombot!");
                     Console.ReadKey();
                     break;
                 default:
