@@ -16,3 +16,20 @@ E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repul
 E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.exe
 E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.pdb
 E:\repulogepUtvonaltervezo\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\MySql.Data.dll
+F:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.exe.config
+F:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.exe
+F:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.pdb
+F:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\MySql.Data.dll
+F:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\MySql.Data.xml
+F:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.csprojResolveAssemblyReference.cache
+F:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.csproj.CoreCompileInputs.cache
+F:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.exe
+F:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.pdb
+E:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.exe.config
+E:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.exe
+E:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\repulo.pdb
+E:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\bin\Debug\MySql.Data.dll
+E:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.csprojResolveAssemblyReference.cache
+E:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.csproj.CoreCompileInputs.cache
+E:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.exe
+E:\repulogepUtvonaltervezo (2)\repulogepUtvonaltervezo\repulo\repulo\obj\Debug\repulo.pdb

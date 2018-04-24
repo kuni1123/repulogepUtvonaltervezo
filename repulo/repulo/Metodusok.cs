@@ -15,6 +15,8 @@ namespace repulo
         public static int HONNAN_INDEX = 1;
         public static int HOVA_INDEX = 2;
         public static int TARSASAG_INDEX = 6;
+        public static int VAROSOK_TABLA_INDEX = 1;
+        public static int JARATOK_TABLA_INDEX = 1;
         public int repulesiIdo = 0;
 
         public struct Ut
@@ -36,7 +38,7 @@ namespace repulo
         }
 
         #region változók
-        public static string kapcsolat = "SERVER=localhost;DATABASE=repulo;UID=root;PASSWORD=mysql;";
+        public static string kapcsolat = "SERVER=kundavid1.ddns.net;DATABASE=repulo;UID=david;PASSWORD=mysql;";
         public static MySqlConnection cnn = new MySqlConnection(kapcsolat);
         public List<string> legitarsasagLista = new List<string>();
         public static MySqlCommand parancs = new MySqlCommand();
@@ -73,19 +75,19 @@ namespace repulo
         public bool kisVarosNagyVaros(ref DataSet ds2, string honnan, string hova,  string erkezik = null, string tarsasag = null)
         {
             bool megvan = false;
-            for (int i = 0; i < ds2.Tables[1].Rows.Count; i++)
+            for (int i = 0; i < ds2.Tables[JARATOK_TABLA_INDEX].Rows.Count; i++)
             {
-                if (honnan == ds2.Tables[1].Rows[i][HONNAN_INDEX].ToString() && ds2.Tables[1].Rows[i][TARSASAG_INDEX].ToString() == tarsasag)
+                if (honnan == ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][HONNAN_INDEX].ToString() && ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][TARSASAG_INDEX].ToString() == tarsasag)
                 {
-                    if (hova == ds2.Tables[1].Rows[i][HOVA_INDEX].ToString() && OraDarabolo(erkezik) < OraDarabolo(ds2.Tables[1].Rows[i][4].ToString()))
+                    if (hova == ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][HOVA_INDEX].ToString() && OraDarabolo(erkezik) < OraDarabolo(ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][4].ToString()))
                     {
                         Hozzaad(i, ref ds2);
-                        erkezik = ds2.Tables[1].Rows[i][5].ToString();
+                        erkezik = ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][5].ToString();
                         megvan = true;
                     }
                     else
                     {
-                        megvan = kisVarosNagyVaros(ref ds2, ds2.Tables[1].Rows[i][HOVA_INDEX].ToString(), hova, ds2.Tables[1].Rows[i][5].ToString(), tarsasag);
+                        megvan = kisVarosNagyVaros(ref ds2, ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][HOVA_INDEX].ToString(), hova, ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][5].ToString(), tarsasag);
                         if (megvan)
                         {
                             Hozzaad(i, ref ds2);
@@ -100,12 +102,12 @@ namespace repulo
         public void Hozzaad(int i, ref DataSet ds2)
         {
             Ut utvonal;
-            utvonal.honnan = ds2.Tables[1].Rows[i][1].ToString();
-            utvonal.hova = ds2.Tables[1].Rows[i][2].ToString();
-            utvonal.km = ds2.Tables[1].Rows[i][3].ToString();
-            utvonal.indul = ds2.Tables[1].Rows[i][4].ToString();
-            utvonal.erkezik = ds2.Tables[1].Rows[i][5].ToString();
-            utvonal.tarsasag = ds2.Tables[1].Rows[i][6].ToString();
+            utvonal.honnan = ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][1].ToString();
+            utvonal.hova = ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][2].ToString();
+            utvonal.km = ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][3].ToString();
+            utvonal.indul = ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][4].ToString();
+            utvonal.erkezik = ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][5].ToString();
+            utvonal.tarsasag = ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][6].ToString();
             if (!atszallas.Contains(utvonal))
             {
                 atszallas.Insert(0,utvonal);
@@ -186,19 +188,20 @@ namespace repulo
             bool megvan = false;
             if(honnan!=null && hova != null)
             {
-                for (int i = 0; i < ds2.Tables[1].Rows.Count; i++)
+                for (int i = 0; i < ds2.Tables[JARATOK_TABLA_INDEX].Rows.Count; i++)
                 {
-                    if (honnan == ds2.Tables[1].Rows[i][HONNAN_INDEX].ToString())
+                    if (honnan == ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][HONNAN_INDEX].ToString())
                     {
-                        if (hova == ds2.Tables[1].Rows[i][HOVA_INDEX].ToString() && OraDarabolo(erkezik) < OraDarabolo(ds2.Tables[1].Rows[i][4].ToString()))
+                        if (hova == ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][HOVA_INDEX].ToString() && OraDarabolo(erkezik) < OraDarabolo(ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][4].ToString()))
                         {
                             Hozzaad(i, ref ds2);
-                            erkezik = ds2.Tables[1].Rows[i][5].ToString();
+                            Valasztas valaszt = new Valasztas();
+                            erkezik = ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][5].ToString();
                             megvan = true;
                         }
                         else
                         {
-                            megvan = Kereses(ref ds2, ds2.Tables[1].Rows[i][HOVA_INDEX].ToString(), hova, ds2.Tables[1].Rows[i][5].ToString());
+                            megvan = Kereses(ref ds2, ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][HOVA_INDEX].ToString(), hova, ds2.Tables[JARATOK_TABLA_INDEX].Rows[i][5].ToString());
                             if (megvan)
                             {
                                 Hozzaad(i, ref ds2);
@@ -210,7 +213,7 @@ namespace repulo
             }
             if (honnan == null && hova != null)
             {
-                foreach (DataRow dr in ds2.Tables[1].Rows)
+                foreach (DataRow dr in ds2.Tables[JARATOK_TABLA_INDEX].Rows)
                 {
                     if (dr[HOVA_INDEX].ToString() == hova)
                     {
@@ -220,7 +223,7 @@ namespace repulo
             }
             else
             {
-                foreach (DataRow dr in ds2.Tables[1].Rows)
+                foreach (DataRow dr in ds2.Tables[JARATOK_TABLA_INDEX].Rows)
                 {
                     if (dr[HONNAN_INDEX].ToString() == honnan)
                     {
@@ -239,6 +242,7 @@ namespace repulo
             int repulesiIdo = 0;
             int repulesiIdoPerc = 0;
             string elozo = "";
+            int km = 0;
 
             for (int i = 0; i < legitarsasagLista.Count; i++)
             {
@@ -260,12 +264,24 @@ namespace repulo
                         if (!aktualis.Contains(utvonal))
                         {
                             aktualis.Add(utvonal);
-                            Console.WriteLine("\t" + utvonal.honnan + "->" + utvonal.hova + " Indulás: " + utvonal.indul + " Érkezés: " + utvonal.erkezik + " km " + utvonal.km + " Társaság: " + utvonal.tarsasag);
+                            Console.WriteLine("\t" + utvonal.honnan + "->" + utvonal.hova + " Indulás: " + utvonal.indul + " Érkezés: " + utvonal.erkezik + " " + utvonal.km + "km Társaság: " + utvonal.tarsasag);
                             if (repulesiIdo == 0)
                             {
-                                repulesiIdo += OraDarabolo(utvonal.erkezik) - OraDarabolo(utvonal.indul);
-                                repulesiIdoPerc += PercDarabolo(utvonal.erkezik) - PercDarabolo(utvonal.indul);
-                                elozo = utvonal.erkezik;
+                                if (OraDarabolo(utvonal.erkezik) < OraDarabolo(utvonal.indul))
+                                {
+                                    repulesiIdo += (OraDarabolo(utvonal.erkezik)+24) - OraDarabolo(utvonal.indul);
+                                    repulesiIdoPerc += PercDarabolo(utvonal.erkezik) - PercDarabolo(utvonal.indul);
+                                    elozo = utvonal.erkezik;
+                                    km += Convert.ToInt16(utvonal.km);
+                                }
+                                else
+                                {
+                                    repulesiIdo += OraDarabolo(utvonal.erkezik) - OraDarabolo(utvonal.indul);
+                                    repulesiIdoPerc += PercDarabolo(utvonal.erkezik) - PercDarabolo(utvonal.indul);
+                                    elozo = utvonal.erkezik;
+                                    km += Convert.ToInt16(utvonal.km);
+                                }
+
                             }
                             else
                             {
@@ -276,12 +292,15 @@ namespace repulo
                                 repulesiIdoPerc += PercDarabolo(utvonal.erkezik) - PercDarabolo(utvonal.indul);
 
                                 elozo = utvonal.erkezik;
+
+                                km += Convert.ToInt16(utvonal.km);
                             }
                         }
                     }
                 }
                 if (repulesiIdo != 0)
                 {
+
                     if (repulesiIdo < 0)
                     {
                         repulesiIdo = repulesiIdo * -1;
@@ -292,9 +311,10 @@ namespace repulo
                         repulesiIdoPerc = repulesiIdoPerc % 60;
                     }
                     Console.WriteLine();
-                    Console.WriteLine("\tA repülés időtartama " + repulesiIdo + " óra " + repulesiIdoPerc + " perc");
+                    Console.WriteLine("\tA repülés időtartama " + repulesiIdo + " óra " + repulesiIdoPerc + " perc és "+km+" km");
                     repulesiIdo = 0;
                     repulesiIdoPerc = 0;
+                    km = 0;
                 }
 
             }

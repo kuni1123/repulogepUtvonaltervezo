@@ -10,7 +10,7 @@ namespace repulo
     class Valasztas
     {
 
-
+        public List<Metodusok.Ut> tarsasagNelkul = new List<Metodusok.Ut>();
         Metodusok met = new Metodusok();
         public void LegitarsasagokListaja(ref DataSet ds, bool kiir = true)
         {
@@ -87,9 +87,6 @@ namespace repulo
             List<string> volt = new List<string>();
             List<Metodusok.Ut> aktualis = new List<Metodusok.Ut>();
 
-            int repulesiIdo = 0;
-            string elozo = "";
-
             bool van = false;
             while (!van)
             {
@@ -128,6 +125,11 @@ namespace repulo
                 {
                     met.kisVarosNagyVaros(ref ds, honnan, hova, null,met.legitarsasagLista[i]);
                 }
+                if (met.atszallas.Count == 0)
+                {
+                    DataSet ds2 = ds;
+                    met.Kereses(ref ds2, honnan, hova, null);
+                }
             }
             else
             {
@@ -148,13 +150,6 @@ namespace repulo
             if (met.atszallas.Count > 0)
             {
                 met.KeszKiiratas();
-            }
-            else
-            {
-                Console.WriteLine(met.atszallas.Count);
-                Console.ReadKey();
-                met.Kereses(ref ds, honnan, hova);
-                Console.WriteLine(met.atszallas.Count);
             }
         }
     }
