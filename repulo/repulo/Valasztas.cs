@@ -48,7 +48,8 @@ namespace repulo
             met.honnanEredeti = kisVarosNeve;
             met.hovaEredeti = nagyVarosNeve;
 
-            Console.WriteLine(kisVarosNeve+"->"+nagyVarosNeve);
+            Console.WriteLine(kisVarosNeve+", "+kisVaros+" lakos");
+            Console.WriteLine(nagyVarosNeve+", "+nagyVaros+" lakos");
 
             for (int i = 0; i < met.legitarsasagLista.Count; i++)
             {
